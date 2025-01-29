@@ -1,0 +1,6 @@
+﻿services:
+  gameplatform:
+    image: gameplatform
+    build:
+      context: .
+      dockerfile: GamePlatform/Dockerfile
