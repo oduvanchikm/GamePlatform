@@ -11,6 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()    // Allow requests from any origin
+            .AllowAnyMethod()    // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
+            .AllowAnyHeader();   // Allow any headers in the request
+    });
+});
+
 var app = builder.Build();
 
 app.UseDefaultFiles(); 
@@ -22,10 +32,28 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        await context.Database.MigrateAsync();
+        logger.LogInformation("Migrations done");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Error with init database");
+        throw;
+    }
+}
+
+app.UseCors("AllowAllOrigins");  // Apply the CORS policy globally
+
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
-
-app.MapFallbackToFile("index.html");
 
 app.Run();

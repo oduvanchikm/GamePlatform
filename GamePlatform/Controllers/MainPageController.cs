@@ -5,18 +5,13 @@ using Microsoft.EntityFrameworkCore;
 namespace GamePlatform.Controllers;
 
 [ApiController]
-[Route("api/main-page")]
-public class MainPageController(IDbContextFactory<ApplicationDbContext> _dbContextFactory, 
-    ILogger<MainPageController> _logger) : ControllerBase
+[Route("api/[controller]")]
+public class MainPageController(ILogger<MainPageController> _logger) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetMainPageInfo()
     {
-        var mainPageInfo = new
-        {
-            Message = "Welcome to Main Page Game Platform!",
-        };
-
-        return Ok(mainPageInfo);
+        _logger.LogInformation("[MainPageController] : Getting main page info");
+        return Ok("Welcome to Main Page Game Platform!");
     }
 }

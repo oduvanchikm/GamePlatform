@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GamePlatform.Controllers;
 
 [ApiController]
-[Route("api/login")]
+[Route("api/login-page")]
 public class LoginController : ControllerBase
 {
     
