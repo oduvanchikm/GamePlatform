@@ -9,5 +9,14 @@ namespace GamePlatform.Controllers;
 public class MainPageController(IDbContextFactory<ApplicationDbContext> _dbContextFactory, 
     ILogger<MainPageController> _logger) : ControllerBase
 {
-    // [HttpPost]
+    [HttpGet]
+    public IActionResult GetMainPageInfo()
+    {
+        var mainPageInfo = new
+        {
+            Message = "Welcome to Main Page Game Platform!",
+        };
+
+        return Ok(mainPageInfo);
+    }
 }
