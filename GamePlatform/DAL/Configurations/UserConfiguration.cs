@@ -18,6 +18,20 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(100)
             .IsRequired();
         
+        builder.Property(u => u.UserName)
+            .HasMaxLength(100)
+            .IsRequired();
+        
+        builder.Property(u => u.UserSurname)
+            .HasMaxLength(100)
+            .IsRequired();
+        
+        builder.Property(u => u.UserGenderId)
+            .IsRequired();
+        
+        builder.Property(u => u.DateOfBirth)
+            .IsRequired();
+        
         builder.Property(u => u.CreatedAt)
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .IsRequired();
@@ -29,6 +43,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasOne(x => x.Role)
             .WithMany(r => r.User)
             .HasForeignKey(x => x.RoleId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasOne(x => x.Gender)
+            .WithMany(r => r.User)
+            .HasForeignKey(x => x.UserGenderId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
     }

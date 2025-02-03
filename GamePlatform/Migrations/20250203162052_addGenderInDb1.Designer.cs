@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GamePlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250202193516_second")]
-    partial class second
+    [Migration("20250203162052_addGenderInDb1")]
+    partial class addGenderInDb1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,24 @@ namespace GamePlatform.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("GamePlatform.Models.Gender", b =>
+                {
+                    b.Property<long>("GenderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("GenderId"));
+
+                    b.Property<string>("NameGender")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("GenderId");
+
+                    b.ToTable("Gender");
+                });
 
             modelBuilder.Entity("GamePlatform.Models.Role", b =>
                 {
@@ -40,23 +58,6 @@ namespace GamePlatform.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Role");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1L,
-                            NameRole = "Admin"
-                        },
-                        new
-                        {
-                            RoleId = 2L,
-                            NameRole = "User"
-                        },
-                        new
-                        {
-                            RoleId = 3L,
-                            NameRole = "Unauthenticated user"
-                        });
                 });
 
             modelBuilder.Entity("GamePlatform.Models.User", b =>
@@ -72,6 +73,9 @@ namespace GamePlatform.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -79,8 +83,8 @@ namespace GamePlatform.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<long>("RoleId")
                         .HasColumnType("bigint");
@@ -90,9 +94,24 @@ namespace GamePlatform.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<long>("UserGenderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("UserSurname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.HasKey("UserId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserGenderId");
 
                     b.ToTable("User");
                 });
@@ -105,7 +124,20 @@ namespace GamePlatform.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GamePlatform.Models.Gender", "Gender")
+                        .WithMany("User")
+                        .HasForeignKey("UserGenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gender");
+
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("GamePlatform.Models.Gender", b =>
+                {
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GamePlatform.Models.Role", b =>

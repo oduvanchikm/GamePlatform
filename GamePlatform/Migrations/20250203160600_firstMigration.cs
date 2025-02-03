@@ -4,12 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace GamePlatform.Migrations
 {
     /// <inheritdoc />
-    public partial class second : Migration
+    public partial class firstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +32,11 @@ namespace GamePlatform.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    PasswordHash = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    UserName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    UserSurname = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    UserGender = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PasswordHash = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     RoleId = table.Column<long>(type: "bigint", nullable: false)
@@ -48,16 +50,6 @@ namespace GamePlatform.Migrations
                         principalTable: "Role",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Role",
-                columns: new[] { "RoleId", "NameRole" },
-                values: new object[,]
-                {
-                    { 1L, "Admin" },
-                    { 2L, "User" },
-                    { 3L, "Unauthenticated user" }
                 });
 
             migrationBuilder.CreateIndex(

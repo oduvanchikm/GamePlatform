@@ -12,11 +12,15 @@ namespace GamePlatform.Migrations
         {
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Email", "PasswordHash", "RoleId" },
-                values: new object[] { 
-                    "admin@example.com", 
-                    "$2a$11$o.sTnyjh8Mr9ArOWpr5Q..rsRPFHJ7EJ6pIeFUyVEfP2fe5b1riHm",
-                    1
+                columns: new[] { "Email", "PasswordHash", "RoleId", "UserName", "UserSurname", "UserGenderId", "DateOfBirth" },
+                values: new object[] {
+                    "admin@admin.com", 
+                    "8396bee0b8a9b72bd9c7607a8ce7f2cf96d68d3af20f59bb6f143508f9e4943e",
+                    1,
+                    "Admin",
+                    "Admin",
+                    1,
+                    new DateTimeOffset(new DateTime(2005, 1, 20), TimeSpan.Zero)
                 });
         }
 

@@ -5,7 +5,7 @@
 namespace GamePlatform.Migrations
 {
     /// <inheritdoc />
-    public partial class addAdminAndRoles : Migration
+    public partial class addRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

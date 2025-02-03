@@ -5,34 +5,32 @@
 namespace GamePlatform.Migrations
 {
     /// <inheritdoc />
-    public partial class alterTableUser : Migration
+    public partial class addGenderInDb1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "PasswordHash",
-                table: "User",
-                type: "character varying(100)",
-                maxLength: 100,
+                name: "NameGender",
+                table: "Gender",
+                type: "character varying(20)",
+                maxLength: 20,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "character varying(50)",
-                oldMaxLength: 50);
+                oldType: "text");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "PasswordHash",
-                table: "User",
-                type: "character varying(50)",
-                maxLength: 50,
+                name: "NameGender",
+                table: "Gender",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "character varying(100)",
-                oldMaxLength: 100);
+                oldType: "character varying(20)",
+                oldMaxLength: 20);
         }
     }
 }
