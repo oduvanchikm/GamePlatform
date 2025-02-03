@@ -5,20 +5,20 @@ import './LoginPage.css';
 function LoginPage() {
     return (
         <div className="login-container">
-            <h1>Авторизация</h1>
+            <h1>Login</h1>
             <form>
                 <div className="input-group">
-                    <label>Электронная почта:</label>
-                    <input type="email" placeholder="Введите вашу почту" />
+                    <label>Email:</label>
+                    <input type="email" placeholder="Enter your email" />
                 </div>
                 <div className="input-group">
-                    <label>Пароль:</label>
-                    <input type="password" placeholder="Введите пароль" />
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter your password" />
                 </div>
-                <button type="submit" className="submit-button">Войти</button>
+                <button type="submit" className="submit-button">Login</button>
             </form>
             <p>
-                Нет аккаунта? <Link to="/register">Зарегистрируйтесь</Link>
+                No account? <Link to="/register">Register</Link>
             </p>
         </div>
     );

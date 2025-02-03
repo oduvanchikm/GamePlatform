@@ -1,32 +1,46 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './MainPage.css'; 
 
 function MainPage() {
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        fetch('http://localhost:5203/api/main-page')
+            .then(response => response.json())
+            .then(data => {
+                setMessage(data.message); 
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+    
     return (
         <div className="home-container">
-            <h1 className="site-title">Добро пожаловать в мир увлекательных игр!</h1>
+            <h1 className="site-title">{message || "Welcome to the world of exciting games!"}</h1>
             <p className="site-description">
-                Здесь начинается настоящее приключение! Наш сайт предлагает вам коллекцию игр, которые вы можете выбрать
-                и наслаждаться прямо сейчас.
-                Вне зависимости от того, ищете ли вы захватывающий стратегический опыт или просто хотите расслабиться — у нас есть все для каждого!
-                Выберите игру и начните свой путь. Удачи и приятной игры!
+                The real adventure begins here! Our website offers you a collection of games that you can choose and
+                enjoy right now.
+                Whether you are looking for an exciting strategic experience or just want to relax, we have everything
+                for everyone!
+                Choose a game and start your journey. Good luck and have a nice game!
             </p>
 
             <div className="game-selection-container">
                 <div className="game-card">
                     <img src="/images/checkers.png" alt="Стратегия" className="game-image"/>
-                    <div className="game-title">Стратегия</div>
+                    <div className="game-title">Strategy</div>
                     <p>Развивайте свою империю, стройте армии и покоряйте мир!</p>
                 </div>
                 <div className="game-card">
                     <img src="/images/checkers.png" alt="Головоломка" className="game-image"/>
-                    <div className="game-title">Головоломки</div>
+                    <div className="game-title">Puzzles</div>
                     <p>Решите самые сложные загадки и прокачайте свои умственные способности.</p>
                 </div>
                 <div className="game-card">
                     <img src="/images/checkers.png" alt="Гонки" className="game-image"/>
-                    <div className="game-title">Гонки</div>
+                    <div className="game-title">Races</div>
                     <p>Скорость, адреналин и сражения на трассе. Почувствуйте себя чемпионом!</p>
                 </div>
                 <div className="game-card">
@@ -48,10 +62,10 @@ function MainPage() {
 
             <div className="button-container">
                 <Link to="/register">
-                    <button className="action-button">Регистрация</button>
+                    <button className="action-button">Sign Up</button>
                 </Link>
                 <Link to="/login">
-                    <button className="action-button">Авторизация</button>
+                    <button className="action-button">Login</button>
                 </Link>
             </div>
         </div>
