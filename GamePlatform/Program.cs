@@ -13,12 +13,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins", policy =>
-    {
-        policy.AllowAnyOrigin()    // Allow requests from any origin
-            .AllowAnyMethod()    // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
-            .AllowAnyHeader();   // Allow any headers in the request
-    });
+    options.AddPolicy("AllowFrontend",
+        policy => policy.WithOrigins("http://localhost:3000") // Разрешаем запросы с React
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
 });
 
 var app = builder.Build();
@@ -50,7 +49,7 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-app.UseCors("AllowAllOrigins");  // Apply the CORS policy globally
+app.UseCors("AllowFrontend");
 
 app.UseRouting();
 app.UseAuthorization();

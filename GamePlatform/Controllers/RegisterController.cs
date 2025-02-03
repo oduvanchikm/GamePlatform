@@ -17,6 +17,7 @@ public class RegisterController(
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
     {
+        Console.WriteLine("rfrifh8rf");
         await using var context = _dbContextFactory.CreateDbContext();
         
         _logger.LogInformation("[ RegisterController ] : Start registration method");
