@@ -4,6 +4,7 @@ using GamePlatform.ViewModels;
 using GamePlatform.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +16,10 @@ public class LoginController(
     IDbContextFactory<ApplicationDbContext> _dbContextFactory,
     ILogger<LoginController> _logger) : ControllerBase
 {
-    public enum UserRole
+    private enum UserRole
     {
         Admin = 1,
-        User = 2,
-        Unauthenticated = 3
+        User = 2
     }
     
     [HttpPost("login")]
@@ -27,31 +27,30 @@ public class LoginController(
     {
         await using var context = _dbContextFactory.CreateDbContext();
         
-        _logger.LogInformation("[ LoginController ] : Start registration method");
+        _logger.LogInformation("[ LoginController ] : Start login method");
         _logger.LogInformation("[ LoginController ] : Email " + loginRequest.Email + ", Password " + loginRequest.Password);
     
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-    
-        if (await context.User.AnyAsync(u => u.Email != loginRequest.Email && u.PasswordHash != PasswordHelper.HashPassword(loginRequest.Password)))
-        {
-            _logger.LogInformation("[ LoginController ] : Not logged in");
-            return Unauthorized();
-        }
+        //
+        // if (await context.User.AnyAsync(u => u.Email != loginRequest.Email))
+        // {
+        //     _logger.LogInformation("[ LoginController ] : Not logged in");
+        //     return Unauthorized();
+        // }
         
         var user = await context.User.Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
-        if (user == null)
+
+        if (user == null || user.PasswordHash != PasswordHelper.HashPassword(loginRequest.Password))
         {
-            _logger.LogWarning("[ LoginController ] : Authentication failed: User with email {Email} not found.", loginRequest.Email);
+            _logger.LogWarning("[ LoginController ] : Authentication failed: Invalid email or password.");
             return Unauthorized();
         }
-
-        bool isPasswordValid;
         
-        isPasswordValid = user.PasswordHash != PasswordHelper.HashPassword(loginRequest.Password) ? false : true;
+        bool isPasswordValid = user.PasswordHash == PasswordHelper.HashPassword(loginRequest.Password);
 
         if (!isPasswordValid)
         {
@@ -79,9 +78,9 @@ public class LoginController(
             authProperties
         );
         
-        var userRole = (UserRole)user.RoleId;
+        var userRole = user.Role.NameRole == "Admin" ? UserRole.Admin : UserRole.User;
         
-        string redirectTo = userRole == UserRole.Admin ? "/admin" : "/";
+        string redirectTo = userRole == UserRole.Admin ? "/admin" : "/personal";
         return Ok(new { message = "Login Successful", redirectTo, fullName = $"{user.UserName} {user.UserSurname}" });
     }
 }

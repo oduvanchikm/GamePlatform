@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bf8dda0-c861-496c-9109-900cac823489" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/.idea.GamePlatform/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.idea.GamePlatform/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/src/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/MainPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/AdminPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/AdminPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/InformationPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/InformationPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/PersonalPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client-app/src/components/PersonalPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/PersonalPageController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/src/components/LoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/LoginPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/src/components/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/src/components/RegisterPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/RegisterPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client-app/src/components/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/RegisterPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GamePlatform/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Controllers/LoginController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/LoginController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -43,6 +54,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/oduvanchik/Desktop/GamePlatform/ClientApp&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -62,7 +74,8 @@
       <updated>1738515912416</updated>
       <workItem from="1738515913452" duration="48000" />
       <workItem from="1738517892255" duration="9297000" />
-      <workItem from="1738588086380" duration="610000" />
+      <workItem from="1738588086380" duration="15967000" />
+      <workItem from="1738771451162" duration="1476000" />
     </task>
     <servers />
   </component>

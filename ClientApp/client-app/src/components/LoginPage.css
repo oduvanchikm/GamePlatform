@@ -1,45 +1,148 @@
-.login-container {
-    max-width: 40px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.home-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../../public/images/main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 50px;
 }
 
+.auth-container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1.0);
+    overflow: hidden;
+}
+
+
+.login-container {
+    flex: 1;
+    padding: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Заголовок */
 .login-container h1 {
-    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
+/* Группы ввода */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .input-group label {
     display: block;
+    font-size: 14px;
     margin-bottom: 5px;
+    color: #ddd;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background 0.3s ease-in-out;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .submit-button {
-    width: 110%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    width: 106%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 8px;
     cursor: pointer;
+    background: linear-gradient(to right, #223d6e, #0033cc);
+    color: white;
+    transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to right, #0044cc, #001a66);
+    transform: scale(1.05);
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.action-button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.action-button:hover {
+    background: white;
+    color: black;
+}
+
+.loader {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.info-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    color: white;
+}
+
+.info-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.info-container p {
+    font-size: 18px;
+    margin-top: 10px;
 }

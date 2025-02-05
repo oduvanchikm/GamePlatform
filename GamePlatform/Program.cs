@@ -14,11 +14,28 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:3000") // Разрешаем запросы с React
+        policy => policy.WithOrigins("http://localhost:3000")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/login";
+        options.AccessDeniedPath = "/access-denied";
+        options.ExpireTimeSpan = TimeSpan.FromHours(1); 
+        options.SlidingExpiration = true;
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+});
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -52,7 +69,8 @@ using (var scope = app.Services.CreateScope())
 app.UseCors("AllowFrontend");
 
 app.UseRouting();
-app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization(); 
 app.MapControllers();
 
 app.Run();
