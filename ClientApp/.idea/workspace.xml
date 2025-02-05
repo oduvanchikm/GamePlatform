@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bf8dda0-c861-496c-9109-900cac823489" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client-app/src/components/TetrisPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client-app/src/components/TetrisPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/InformationController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/TetrisController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/DAL/Configurations/GameConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/DAL/Configurations/GameUsersConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetris.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetromino.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Models/Game.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GamePlatform/Models/GameUsers.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/src/components/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/MainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/src/components/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GamePlatform/Controllers/PersonalPageController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/PersonalPageController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GamePlatform/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/src/components/TetrisPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/TetrisPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Controllers/TetrisController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/TetrisController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetris.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetris.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetromino.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Games/Tetris/Tetromino.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" afterDir="false" />
     </list>
@@ -79,7 +67,7 @@
       <workItem from="1738515913452" duration="48000" />
       <workItem from="1738517892255" duration="9297000" />
       <workItem from="1738588086380" duration="15967000" />
-      <workItem from="1738771451162" duration="8498000" />
+      <workItem from="1738771451162" duration="9740000" />
     </task>
     <servers />
   </component>

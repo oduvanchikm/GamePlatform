@@ -11,14 +11,26 @@ public class TetrisController(
     IDbContextFactory<ApplicationDbContext> _dbContextFactory,
     ILogger<TetrisController> _logger) : ControllerBase
 {
+    private Tetris newGameTetris = new Tetris();
+    
     [HttpGet("start")]
     public IActionResult TetrisPage()
     {
-        Tetris newGameTetris = new Tetris();
         var grid = ConvertToJaggedArray(newGameTetris.Grid);
 
         Console.WriteLine("TetrisController.MainPage()");
         _logger.LogInformation("[TetrisController] : Getting main page info");
+        return Ok(new { grid });
+    }
+    
+    [HttpPost("rotate")]
+    public IActionResult RotateTetromino()
+    {
+        _logger.LogInformation("[TetrisController] : Getting Rotate");
+        newGameTetris.RotateTetris();
+        var grid = ConvertToJaggedArray(newGameTetris.Grid);
+        
+        _logger.LogInformation("[TetrisController] : end Rotate");
         return Ok(new { grid });
     }
 

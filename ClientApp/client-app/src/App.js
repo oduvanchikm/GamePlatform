@@ -19,6 +19,7 @@ function App() {
                 <Route path="/personal" element={<PersonalPage/>}/>
                 <Route path="/tetris" element={<TetrisPage/>}/>
                 <Route path="/tetris/start" element={<TetrisPage/>}/>
+                <Route path="/tetris/rotate" element={<TetrisPage/>}/>
             </Routes>
         </Router>
     );

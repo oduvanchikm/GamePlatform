@@ -17,15 +17,16 @@ public class Tetris
         random = new Random();
         CreateNewTetromino();
         
-        Grid[4, 0] = 1;
-        Grid[4, 1] = 1;
-        Grid[5, 1] = 1;
-        Grid[5, 2] = 1;
-
+        Grid[4, 6] = 1;
+        Grid[4, 7] = 1;
+        Grid[5, 7] = 1;
+        Grid[5, 8] = 1;
     }
 
     private void CreateNewTetromino()
     {
         newTetromino = new Tetromino(random.Next(7));
     }
+    
+    public void RotateTetris() => newTetromino.Rotate();
 }

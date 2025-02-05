@@ -1,9 +1,37 @@
-// React компонент TetrisPage.jsx
 import { useEffect, useState } from 'react';
 import './TetrisPage.css';
 
 function TetrisPage() {
     const [grid, setGrid] = useState([]);
+    
+    const rotateTetromino = () => {
+        fetch('http://localhost:5203/api/tetris-page/rotate', { method: 'POST' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Поле после поворота:", data);
+                setGrid(data.grid);
+            })
+            .catch(error => {
+                console.error("Ошибка запроса поворота:", error);
+            });
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault(); 
+                rotateTetromino();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     useEffect(() => {
         fetch('http://localhost:5203/api/tetris-page/start')
@@ -21,7 +49,7 @@ function TetrisPage() {
                 console.error("Ошибка получения данных:", error);
             });
     }, []);
-
+    
     return (
         <div className="container">
             <h1>Tetris</h1>

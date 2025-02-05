@@ -11,7 +11,7 @@ namespace GamePlatform.Games.Tetris;
 
 public class Tetromino
 {
-    public int[,] Shape { get; private set; }
+    private int[,] Shape { get; set; }
     
     public int X { get; set; }
     public int Y { get; set; }
@@ -94,11 +94,11 @@ public class Tetromino
         
         int[,] rotatedShape = new int[y, x];
 
-        for (int i = 0; i < y; ++i)
+        for (int i = 0; i < x; ++i)
         {
-            for (int j = 0; j < x; ++j)
+            for (int j = 0; j < y; ++j)
             {
-                rotatedShape[j, y - i - 1] = Shape[j, i];
+                rotatedShape[j, x - i - 1] = Shape[i, j];
             }
         }
         
