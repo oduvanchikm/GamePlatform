@@ -7,7 +7,6 @@ namespace GamePlatform.Controllers;
 [ApiController]
 [Route("api/personal-page")]
 public class PersonalPageController(
-    IDbContextFactory<ApplicationDbContext> _dbContextFactory,
     ILogger<RegisterController> _logger) : ControllerBase
 {
     [HttpGet]

@@ -14,4 +14,6 @@ public class User
     public DateTime UpdatedAt { get; set; }
     public Role Role { get; set; }
     public long RoleId { get; set; }
+    
+    // public IEnumerable<GameUsers> GameUsers { get; set; }
 }

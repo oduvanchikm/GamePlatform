@@ -53,7 +53,7 @@ body {
     justify-items: center;
 }
 
-.game-card {
+.game-card1 {
     background-color: #2d2d2d;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
@@ -63,10 +63,10 @@ body {
     width: 100%;
     max-width: 320px;
     text-align: center;
-    padding: 15px;
+    padding: 25px;
 }
 
-.game-card:hover {
+.game-card1:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
 }
@@ -79,7 +79,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.game-card:hover .game-image {
+.game-card1:hover .game-image {
     transform: scale(1.05);
 }
 
@@ -90,7 +90,7 @@ body {
     color: #fff;
 }
 
-.game-card p {
+.game-card1 p {
     font-size: 1rem;
     color: #ccc;
     line-height: 1.4;
