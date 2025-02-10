@@ -15,5 +15,5 @@ public class User
     public Role Role { get; set; }
     public long RoleId { get; set; }
     
-    // public IEnumerable<GameUsers> GameUsers { get; set; }
+    public IEnumerable<GameUsers> GameUsers { get; set; }
 }

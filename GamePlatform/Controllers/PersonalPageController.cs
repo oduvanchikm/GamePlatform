@@ -1,10 +1,12 @@
 using GamePlatform.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GamePlatform.Controllers;
 
 [ApiController]
+[Authorize("UserPolicy")]
 [Route("api/personal-page")]
 public class PersonalPageController(
     ILogger<RegisterController> _logger) : ControllerBase

@@ -14,7 +14,7 @@ public class RegisterController(
     ILogger<RegisterController> _logger) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
+    public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest registerRequest)
     {
         await using var context = _dbContextFactory.CreateDbContext();
         

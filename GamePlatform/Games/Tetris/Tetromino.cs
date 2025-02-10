@@ -11,15 +11,17 @@ namespace GamePlatform.Games.Tetris;
 
 public class Tetromino
 {
-    private int[,] Shape { get; set; }
+    public int[,] Shape { get; set; }
     
     public int X { get; set; }
     public int Y { get; set; }
 
+    // private ILogger<Tetromino> _logger;
+
     public Tetromino(int type)
     {
         X = 3;
-        Y = 0;
+        Y = 4;
         
         switch (type)
         {
@@ -85,12 +87,16 @@ public class Tetromino
                 };
                 break;
         }
+        
+        Console.WriteLine($"Tetromino in constructor {Shape.GetLength(0)}, {Shape.GetLength(1)}");
     }
 
     public void Rotate()
     {
-        int x = Shape.GetLength(0);
-        int y = Shape.GetLength(1);
+        int x = Shape.GetLength(0); // это ширина тетромино
+        int y = Shape.GetLength(1); // это длина тетромино 
+        
+        Console.WriteLine($"Tetromino in rotate method {x}, {y}");
         
         int[,] rotatedShape = new int[y, x];
 

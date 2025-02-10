@@ -35,8 +35,6 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
 });
 
-builder.Services.AddAuthorization();
-
 var app = builder.Build();
 
 app.UseDefaultFiles(); 
@@ -68,6 +66,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCors("AllowFrontend");
 
+app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization(); 

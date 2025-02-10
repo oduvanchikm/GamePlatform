@@ -23,7 +23,7 @@ public class LoginController(
     }
     
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+    public async Task<IActionResult> LoginAsync([FromBody] LoginRequest loginRequest)
     {
         await using var context = _dbContextFactory.CreateDbContext();
         
@@ -34,12 +34,6 @@ public class LoginController(
         {
             return BadRequest(ModelState);
         }
-        //
-        // if (await context.User.AnyAsync(u => u.Email != loginRequest.Email))
-        // {
-        //     _logger.LogInformation("[ LoginController ] : Not logged in");
-        //     return Unauthorized();
-        // }
         
         var user = await context.User.Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
@@ -81,6 +75,9 @@ public class LoginController(
         var userRole = user.Role.NameRole == "Admin" ? UserRole.Admin : UserRole.User;
         
         string redirectTo = userRole == UserRole.Admin ? "/admin" : "/personal";
+        
+        _logger.LogInformation("[ LoginController ] : User logged in");
+        
         return Ok(new { message = "Login Successful", redirectTo, fullName = $"{user.UserName} {user.UserSurname}" });
     }
 }

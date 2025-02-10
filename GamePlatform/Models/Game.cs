@@ -6,5 +6,5 @@ public class Game
     public string GameName { get; set; }
     public string GameDescription { get; set; }
     
-    // public IEnumerable<GameUsers> GameUsers { get; set; }
+    public IEnumerable<GameUsers> GameUsers { get; set; }
 }

@@ -1,7 +1,9 @@
+using System.Security.Claims;
 using GamePlatform.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GamePlatform.Games.Tetris;
+using GamePlatform.Models;
 
 namespace GamePlatform.Controllers;
 
@@ -33,6 +35,17 @@ public class TetrisController(
         _logger.LogInformation("[TetrisController] : end Rotate");
         return Ok(new { grid });
     }
+    
+    [HttpPost("down")]
+    public IActionResult DownTetromino()
+    {
+        _logger.LogInformation("[TetrisController] : Getting down");
+        newGameTetris.MoveDown();
+        var grid = ConvertToJaggedArray(newGameTetris.Grid);
+        
+        _logger.LogInformation("[TetrisController] : end down");
+        return Ok(new { grid });
+    }
 
     private int[][] ConvertToJaggedArray(int[,] array)
     {
@@ -43,5 +56,51 @@ public class TetrisController(
                 .Select(x => array[x, y])
                 .ToArray())
             .ToArray();
+    }
+
+    private long FindUserById()
+    {
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userIdClaim == null)
+        {
+            return 0;
+        }
+        
+        return long.Parse(userIdClaim.Value);
+    }
+    public async Task<IActionResult> AddResultGamesAsync()
+    {
+        long userId = FindUserById();
+        int flag = 0;
+        if (userId == 0)
+        {
+            flag = 1;
+            _logger.LogInformation("[TetrisController] : Unauthorized user plays the tetris");
+        }
+
+        await using var context = _dbContextFactory.CreateDbContext();
+
+        var user = await context.User
+            .FirstOrDefaultAsync(u => u.UserId == userId);
+        if (user == null)
+        {
+            return NotFound(new { message = "User not found." });
+        }
+        
+        var game = await context.Game
+            .FirstOrDefaultAsync(g => g.GameName == "Tetris");
+        if (game == null)
+        {
+            return NotFound(new { message = "Game not found." });
+        }
+
+        GameUsers gameUsers = new GameUsers()
+        {
+            GameId = game.GameId,
+            UserId = user.UserId,
+            StartTime = DateTime.Now
+        };
+        
+        return Ok(new { message = "Game added.", gameUsers });
     }
 }
