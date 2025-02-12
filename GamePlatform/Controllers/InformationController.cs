@@ -16,7 +16,6 @@ public class InformationController(
     IDbContextFactory<ApplicationDbContext> _dbContextFactory,
     ILogger<LoginController> _logger) : ControllerBase
 {
-
     [HttpGet("logout")]
     public async Task<IActionResult> LogoutAsync()
     {

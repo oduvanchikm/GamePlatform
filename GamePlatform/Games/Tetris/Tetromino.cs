@@ -16,8 +16,6 @@ public class Tetromino
     public int X { get; set; }
     public int Y { get; set; }
 
-    // private ILogger<Tetromino> _logger;
-
     public Tetromino(int type)
     {
         X = 3;
@@ -87,27 +85,22 @@ public class Tetromino
                 };
                 break;
         }
-        
-        Console.WriteLine($"Tetromino in constructor {Shape.GetLength(0)}, {Shape.GetLength(1)}");
     }
-
+    
     public void Rotate()
     {
-        int x = Shape.GetLength(0); // это ширина тетромино
-        int y = Shape.GetLength(1); // это длина тетромино 
-        
-        Console.WriteLine($"Tetromino in rotate method {x}, {y}");
-        
-        int[,] rotatedShape = new int[y, x];
+        int rows = Shape.GetLength(0);  // количество строк
+        int cols = Shape.GetLength(1);  // количество столбцов
 
-        for (int i = 0; i < x; ++i)
+        for (int i = 0; i < rows; i++)
         {
-            for (int j = 0; j < y; ++j)
+            for (int j = 0; j < cols / 2; j++)
             {
-                rotatedShape[j, x - i - 1] = Shape[i, j];
+                int temp = Shape[i, j];
+                Shape[i, j] = Shape[i, cols - 1 - j];
+                Shape[i, cols - 1 - j] = temp;
             }
         }
-        
-        Shape = rotatedShape;
     }
+
 }

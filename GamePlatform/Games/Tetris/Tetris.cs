@@ -10,6 +10,7 @@ public class Tetris
     private Random random;
     private Tetromino newTetromino;
     public int[,] Grid;
+    private Timer gameTimer;
 
     public Tetris()
     {
@@ -17,6 +18,13 @@ public class Tetris
         random = new Random();
         CreateNewTetromino();
         AddTetrominoToGrid();
+        
+        gameTimer = new Timer(AutoMoveDown, null, 3000, 3000);
+    }
+    
+    private void AutoMoveDown(object state)
+    {
+        MoveDown();
     }
 
     private void CreateNewTetromino()
@@ -26,8 +34,6 @@ public class Tetris
     
     private void AddTetrominoToGrid()
     {
-        //Grid = new int[Width, Height];
-    
         int[,] shape = newTetromino.Shape;
         for (int y = 0; y < shape.GetLength(0); y++)
         {
@@ -47,7 +53,25 @@ public class Tetris
         }
     }
     
-    public bool CanMoveDown()
+    private void RemoveTetrominoFromGrid()
+    {
+        int[,] shape = newTetromino.Shape;
+        for (int y = 0; y < shape.GetLength(0); y++)
+        {
+            for (int x = 0; x < shape.GetLength(1); x++)
+            {
+                int gridX = newTetromino.X + x;
+                int gridY = newTetromino.Y + y;
+
+                if (gridX >= 0 && gridX < Width && gridY >= 0 && gridY < Height)
+                {
+                    Grid[gridX, gridY] = 0;
+                }
+            }
+        }
+    }
+    
+    private bool CanMoveDown()
     {
         int[,] shape = newTetromino.Shape;
     
@@ -70,17 +94,16 @@ public class Tetris
         return true;
     }
 
-    public void MoveDown()
+    private void MoveDown()
     {
         if (CanMoveDown())
         {
-            Console.WriteLine("gygyo");
+            RemoveTetrominoFromGrid();
             newTetromino.Y++;
             AddTetrominoToGrid();
         }
         else
         {
-            Console.WriteLine("hhhh");
             CreateNewTetromino();
             AddTetrominoToGrid();
         }
@@ -88,10 +111,56 @@ public class Tetris
     
     public void RotateTetris()
     {
-        newTetromino.Rotate();
-        Console.WriteLine($"information about tetromino in rotation in tetris: {newTetromino.Shape.GetLength(0)}x{newTetromino.Shape.GetLength(1)}");
-        AddTetrominoToGrid();
-        Console.WriteLine($"information 2 about tetromino in rotation in tetris: {newTetromino.Shape.GetLength(0)}x{newTetromino.Shape.GetLength(1)}");
+        RemoveTetrominoFromGrid();
 
+        int[,] originalShape = (int[,])newTetromino.Shape.Clone();
+
+        newTetromino.Rotate();
+
+        if (!CanPlaceTetromino(newTetromino))
+        {
+            newTetromino.Shape = originalShape; 
+        }
+
+        AddTetrominoToGrid();
     }
+
+    public void FastMoveDown()
+    {
+        while (CanMoveDown())
+        {
+            RemoveTetrominoFromGrid();
+            newTetromino.Y++;
+            AddTetrominoToGrid();
+        }
+    }
+
+    
+    private bool CanPlaceTetromino(Tetromino tetromino)
+    {
+        int[,] shape = tetromino.Shape;
+        for (int y = 0; y < shape.GetLength(0); y++)
+        {
+            for (int x = 0; x < shape.GetLength(1); x++)
+            {
+                if (shape[y, x] == 1)
+                {
+                    int gridX = tetromino.X + x;
+                    int gridY = tetromino.Y + y;
+
+                    if (gridX < 0 || gridX >= Width || gridY < 0 || gridY >= Height)
+                    {
+                        return false;
+                    }
+
+                    if (Grid[gridX, gridY] == 1)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 }

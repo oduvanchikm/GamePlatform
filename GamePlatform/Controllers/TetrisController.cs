@@ -39,11 +39,13 @@ public class TetrisController(
     [HttpPost("down")]
     public IActionResult DownTetromino()
     {
-        _logger.LogInformation("[TetrisController] : Getting down");
-        newGameTetris.MoveDown();
+        _logger.LogInformation("[TetrisController] : Accelerating down");
+    
+        newGameTetris.FastMoveDown();
+
         var grid = ConvertToJaggedArray(newGameTetris.Grid);
-        
-        _logger.LogInformation("[TetrisController] : end down");
+    
+        _logger.LogInformation("[TetrisController] : End acceleration");
         return Ok(new { grid });
     }
 
