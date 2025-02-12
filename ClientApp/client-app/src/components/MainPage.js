@@ -35,10 +35,10 @@ function MainPage() {
                         <p>Развивайте свою империю, стройте армии и покоряйте мир!</p>
                     </div>
                 </Link>
-                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                <Link to="/chess" style={{textDecoration: "none", color: "inherit"}}>
                     <div className="game-card">
                         <img src="/images/checkers.png" alt="Головоломка" className="game-image"/>
-                        <div className="game-title">Puzzles</div>
+                        <div className="game-title">Chess</div>
                         <p>Решите самые сложные загадки и прокачайте свои умственные способности.</p>
                     </div>
                 </Link>

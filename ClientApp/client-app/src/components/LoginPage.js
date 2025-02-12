@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {data, Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
@@ -71,7 +71,7 @@ function LoginPage() {
                             />
                         </div>
                         <button type="submit" className="submit-button">
-                            {isLoading ? <span className="Loader..."></span> : "Login"}
+                            {isLoading ? <span className="loader"></span> : "Login"}
                         </button>
                     </form>
                     <p>
@@ -85,12 +85,12 @@ function LoginPage() {
                         <p>Explore the best games, enjoy game time.</p>
                     </div>
                 </div>
+            </div>
 
-                <div className="button-container">
-                    <Link to="/">
-                        <button className="action-button">Back</button>
-                    </Link>
-                </div>
+            <div className="button-container">
+                <Link to="/">
+                    <button className="action-button">Back</button>
+                </Link>
             </div>
         </div>
     );

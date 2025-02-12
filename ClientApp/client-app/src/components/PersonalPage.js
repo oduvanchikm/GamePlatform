@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {data, Link, useNavigate} from 'react-router-dom';
+import React, {useEffect } from 'react';
+import {Link } from 'react-router-dom';
 import './PersonalPage.css';
 
 function PersonalPage() {
-    const navigate = useNavigate();
     const fullName = localStorage.getItem("fullName");
 
-    const [message, setMessage] = useState('');
+    // const [message, setMessage] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5203/api/main-page')
+        fetch('http://localhost:5203/api/personal-page')
             .then(response => response.json())
             .then(data => {
-                setMessage(data.message);
+                // setMessage(data.message);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -31,41 +30,53 @@ function PersonalPage() {
             </p>
 
             <div className="game-selection-container">
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="Стратегия" className="game-image"/>
-                    <div className="game-title">Strategy</div>
-                    <p>Развивайте свою империю, стройте армии и покоряйте мир!</p>
-                </div>
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="Головоломка" className="game-image"/>
-                    <div className="game-title">Puzzles</div>
-                    <p>Решите самые сложные загадки и прокачайте свои умственные способности.</p>
-                </div>
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="Гонки" className="game-image"/>
-                    <div className="game-title">Races</div>
-                    <p>Скорость, адреналин и сражения на трассе. Почувствуйте себя чемпионом!</p>
-                </div>
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="Приключения" className="game-image"/>
-                    <div className="game-title">Приключения</div>
-                    <p>Погрузитесь в захватывающие приключения и путешествуйте по удивительным мирам!</p>
-                </div>
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="Аркада" className="game-image"/>
-                    <div className="game-title">Аркады</div>
-                    <p>Классика жанра — быстрые и увлекательные игры, которые поднимут настроение.</p>
-                </div>
-                <div className="game-card">
-                    <img src="/images/checkers.png" alt="PvP" className="game-image"/>
-                    <div className="game-title">PvP игры</div>
-                    <p>Сразитесь с друзьями или игроками со всего мира в настоящих битвах!</p>
-                </div>
+                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card1">
+                        <img src="/images/checkers.png" alt="Стратегия" className="game-image"/>
+                        <div className="game-title">Tetris</div>
+                        <p>Развивайте свою империю, стройте армии и покоряйте мир!</p>
+                    </div>
+                </Link>
+                <Link to="/chess" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card">
+                        <img src="/images/checkers.png" alt="Головоломка" className="game-image"/>
+                        <div className="game-title">Chess</div>
+                        <p>Решите самые сложные загадки и прокачайте свои умственные способности.</p>
+                    </div>
+                </Link>
+                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card">
+                        <img src="/images/checkers.png" alt="Гонки" className="game-image"/>
+                        <div className="game-title">Races</div>
+                        <p>Скорость, адреналин и сражения на трассе. Почувствуйте себя чемпионом!</p>
+                    </div>
+                </Link>
+                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card">
+                        <img src="/images/checkers.png" alt="Приключения" className="game-image"/>
+                        <div className="game-title">Приключения</div>
+                        <p>Погрузитесь в захватывающие приключения и путешествуйте по удивительным мирам!</p>
+                    </div>
+                </Link>
+                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card">
+                        <img src="/images/checkers.png" alt="Аркада" className="game-image"/>
+                        <div className="game-title">Аркады</div>
+                        <p>Классика жанра — быстрые и увлекательные игры, которые поднимут настроение.</p>
+                    </div>
+                </Link>
+                <Link to="/tetris" style={{textDecoration: "none", color: "inherit"}}>
+                    <div className="game-card1">
+                        <img src="/images/checkers.png" alt="PvP" className="game-image"/>
+                        <div className="game-title">PvP игры</div>
+                        <p>Сразитесь с друзьями или игроками со всего мира в настоящих битвах!</p>
+                    </div>
+                </Link>
             </div>
 
             <div className="button-container">
                 <Link to="/information">
-                    <button className="action-button">{ fullName }</button>
+                    <button className="action-button">{fullName}</button>
                 </Link>
             </div>
         </div>

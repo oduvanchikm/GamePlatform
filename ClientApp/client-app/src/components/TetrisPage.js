@@ -3,53 +3,59 @@ import './TetrisPage.css';
 
 function TetrisPage() {
     const [grid, setGrid] = useState([]);
-    
-    const rotateTetromino = () => {
-        fetch('http://localhost:5203/api/tetris-page/rotate', { method: 'POST' })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Поле после поворота:", data);
-                setGrid(data.grid);
-            })
-            .catch(error => {
-                console.error("Ошибка запроса поворота:", error);
-            });
+    const [isFastDrop, setIsFastDrop] = useState(false);
+
+    const fetchGrid = async (endpoint, method = 'POST') => {
+        try {
+            const response = await fetch(`http://localhost:5203/api/tetris-page/${endpoint}`, { method });
+            if (!response.ok) throw new Error('Ошибка сети');
+            const data = await response.json();
+            setGrid(data.grid);
+        } catch (error) {
+            console.error(`Ошибка запроса (${endpoint}):`, error);
+        }
     };
 
     useEffect(() => {
-        const handleKeyDown = (e) => {
+        fetchGrid('start', 'GET').catch(console.error);
+    }, []);
+
+    useEffect(() => {
+        const handleKeyDown = async (e) => {
             if (e.code === 'Space') {
-                e.preventDefault(); 
-                rotateTetromino();
+                e.preventDefault();
+                await fetchGrid('rotate');
+            }
+            if (e.code === 'ArrowDown') {
+                e.preventDefault();
+                setIsFastDrop(true);
+            }
+        };
+
+        const handleKeyUp = (e) => {
+            if (e.code === 'ArrowDown') {
+                setIsFastDrop(false);
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keyup', handleKeyUp);
+        };
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5203/api/tetris-page/start')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Ответ от сервера:", data);
-                setGrid(data.grid);
-            })
-            .catch(error => {
-                console.error("Ошибка получения данных:", error);
-            });
-    }, []);
-    
+        const intervalSpeed = isFastDrop ? 200 : 3000;
+
+        const interval = setInterval(() => {
+            fetchGrid('down').catch(console.error);
+        }, intervalSpeed);
+
+        return () => clearInterval(interval);
+    }, [isFastDrop]);
+
     return (
         <div className="container">
             <h1>Tetris</h1>
@@ -60,7 +66,7 @@ function TetrisPage() {
                             {row.map((cell, cellIndex) => (
                                 <div
                                     key={cellIndex}
-                                    className={`tetris-cell ${cell === 0 ? 'empty' : (cell === 1 ? 'filled' : 'tetromino')}`}
+                                    className={`tetris-cell ${cell === 0 ? 'empty' : 'filled'}`}
                                 />
                             ))}
                         </div>

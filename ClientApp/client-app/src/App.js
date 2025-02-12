@@ -6,6 +6,8 @@ import LoginPage from './components/LoginPage';
 import PersonalPage from "./components/PersonalPage";
 import './App.css';
 import TetrisPage from "./components/TetrisPage";
+import InformationPage from "./components/InformationPage";
+import ChessPage from "./components/ChessPage";
 
 
 function App() {
@@ -20,6 +22,9 @@ function App() {
                 <Route path="/tetris" element={<TetrisPage/>}/>
                 <Route path="/tetris/start" element={<TetrisPage/>}/>
                 <Route path="/tetris/rotate" element={<TetrisPage/>}/>
+                <Route path="/tetris/down" element={<TetrisPage/>}/>
+                <Route path="/information" element={<InformationPage/>}/>
+                <Route path="/chess" element={<ChessPage/>}/>
             </Routes>
         </Router>
     );

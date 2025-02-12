@@ -35,8 +35,6 @@ function RegisterPage() {
             });
 
             if (response.ok) {
-                // const result = await response.text();
-                // alert(result);
                 navigate('/login');
             } else {
                 const error = await response.text();
@@ -131,12 +129,12 @@ function RegisterPage() {
                         <p>Explore the best games, join the community, and start your adventure today.</p>
                     </div>
                 </div>
+            </div>
 
-                <div className="button-container">
-                    <Link to="/">
-                        <button className="action-button">Back</button>
-                    </Link>
-                </div>
+            <div className="button-container">
+                <Link to="/">
+                    <button className="action-button">Back</button>
+                </Link>
             </div>
         </div>
     );
