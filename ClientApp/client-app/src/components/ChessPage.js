@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
+import "./ChessPage.css";
+import {Link} from "react-router-dom";
 
 const pieceNotation = {
     p: "",
@@ -62,35 +64,31 @@ const ChessPage = () => {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-[#1b1b1b]">
-            <div className="flex flex-col items-center bg-[#2d1b0b] p-5 rounded-xl shadow-lg">
-                <div className="border-4 border-[#7b5d41] rounded-lg p-2">
-                    <Chessboard
-                        position={game.fen()}
-                        onPieceDrop={onDrop}
-                        boardWidth={450}
-                        customBoardStyle={{
-                            backgroundColor: "#3e2c20",
-                        }}
-                        customDarkSquareStyle={{
-                            backgroundColor: "#7b5d41",
-                        }}
-                        customLightSquareStyle={{
-                            backgroundColor: "#e6d2b5",
-                        }}
-                    />
+        <div className="chess-container">
+            <div className="board-container">
+                <h1>Chess Game</h1>
+                <div className="chessboard-wrapper">
+                    <Chessboard position={game.fen()} onPieceDrop={onDrop} boardWidth={600}/>
                 </div>
+            </div>
 
-                <div className="mt-6 w-56 min-w-[450px] bg-[#3e2c20] p-3 rounded-lg text-white shadow-md">
-                    <h2 className="text-lg font-bold text-center">Recording a chess game</h2>
-                    <div className="mt-3 h-72 overflow-y-auto">
-                        {moves.map(({ moveNumber, whiteMove, blackMove }) => (
-                            <p key={moveNumber} className="text-sm py-1 border-b border-[#7b5d41]">
-                                {moveNumber}. {whiteMove} {blackMove ? blackMove : " "}
-                            </p>
-                        ))}
-                    </div>
+            <div className="moves-list">
+                <h2>Game Moves</h2>
+                <div className="moves-scroll">
+                    {moves.map(({moveNumber, whiteMove, blackMove}) => (
+                        <div key={moveNumber} className="move-container">
+                            <span className="move-number">{moveNumber}.</span>
+                            <span className="move">{whiteMove}</span>
+                            <span className="move">{blackMove ? blackMove : ""}</span>
+                        </div>
+                    ))}
                 </div>
+            </div>
+
+            <div className="button-container">
+                <Link to="/personal">
+                    <button className="action-button">Back</button>
+                </Link>
             </div>
         </div>
     );
