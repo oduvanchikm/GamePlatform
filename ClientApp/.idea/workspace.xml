@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6bf8dda0-c861-496c-9109-900cac823489" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-app/src/components/ChessPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/ChessPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client-app/src/components/ChessPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/src/components/ChessPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Controllers/ChessController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Controllers/ChessController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/Games/Chess/ChessGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/Games/Chess/ChessGame.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GamePlatform/ViewModels/ChessMoveRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/ViewModels/ChessMoveRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../GamePlatform/wwwroot/index.html" afterDir="false" />
     </list>
@@ -69,7 +71,7 @@
       <workItem from="1739024666439" duration="4831000" />
       <workItem from="1739091481482" duration="3388000" />
       <workItem from="1739215502678" duration="3753000" />
-      <workItem from="1739374205542" duration="9125000" />
+      <workItem from="1739374205542" duration="10388000" />
     </task>
     <servers />
   </component>

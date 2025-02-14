@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import "./ChessPage.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const pieceNotation = {
     p: "",
@@ -40,17 +40,26 @@ const ChessPage = () => {
             setGame(newGame);
 
             const moveObj = game.move({ from: sourceSquare, to: targetSquare, promotion: "q" });
-            const piece = pieceNotation[moveObj.piece];
-            const lastMove = `${piece}${sourceSquare}-${targetSquare}`;
+            if (!moveObj) return false;
+
+            let notation = "";
+            if (moveObj.san.includes("O-O")) {
+                notation = moveObj.san;
+            } else {
+                const piece = pieceNotation[moveObj.piece];
+                const capture = moveObj.captured ? "x" : "-";
+                notation = `${piece}${sourceSquare}${capture}${targetSquare}`;
+                if (moveObj.flags.includes("e")) notation += " e.p.";
+            }
 
             setMoves((prevMoves) => {
                 const newMoves = [...prevMoves];
 
                 if (newGame.turn() === "b") {
-                    newMoves.push({ moveNumber: newMoves.length + 1, whiteMove: lastMove, blackMove: "" });
+                    newMoves.push({ moveNumber: newMoves.length + 1, whiteMove: notation, blackMove: "" });
                 } else {
                     if (newMoves.length > 0) {
-                        newMoves[newMoves.length - 1].blackMove = lastMove;
+                        newMoves[newMoves.length - 1].blackMove = notation;
                     }
                 }
 
@@ -68,14 +77,14 @@ const ChessPage = () => {
             <div className="board-container">
                 <h1>Chess Game</h1>
                 <div className="chessboard-wrapper">
-                    <Chessboard position={game.fen()} onPieceDrop={onDrop} boardWidth={600}/>
+                    <Chessboard position={game.fen()} onPieceDrop={onDrop} boardWidth={600} />
                 </div>
             </div>
 
             <div className="moves-list">
                 <h2>Game Moves</h2>
                 <div className="moves-scroll">
-                    {moves.map(({moveNumber, whiteMove, blackMove}) => (
+                    {moves.map(({ moveNumber, whiteMove, blackMove }) => (
                         <div key={moveNumber} className="move-container">
                             <span className="move-number">{moveNumber}.</span>
                             <span className="move">{whiteMove}</span>

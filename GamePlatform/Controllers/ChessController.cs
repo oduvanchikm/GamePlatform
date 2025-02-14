@@ -25,7 +25,8 @@ public class ChessController(
     public IActionResult MakeMove([FromBody] ChessMoveRequest request)
     {
         _logger.LogInformation("[ChessController] : start making move method");
-        bool isValid = _chessGame.MakeMove(request.From, request.To);
+        bool isValid = _chessGame.MakeMove(request.From, request.To, request.PromotionPiece);
+
         if (!isValid)
         {
             _logger.LogInformation("[ChessController] : bad request in make move");
